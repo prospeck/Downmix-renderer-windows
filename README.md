@@ -17,26 +17,26 @@ This project is mainly inspired by the ideal macOS version built by peqdb: [http
 
 3. Open `Control Panel -> Sound -> Playback`, then complete these checks in order.
 
-   1. <img src="images/windows-playback-cable-input-default.png" alt="Set CABLE Input as the default playback device" width="480"><br>
+   1. <img src="images/windows-playback-cable-input-default.png" alt="Set CABLE Input as the default playback device" width="340"><br>
       `Right click CABLE Input -> Set as Default Device`
 
-   2. <img src="images/windows-speaker-setup-7-1.png" alt="Configure CABLE Input speaker setup to 7.1 Surround" width="520"><br>
+   2. <img src="images/windows-speaker-setup-7-1.png" alt="Configure CABLE Input speaker setup to 7.1 Surround" width="420"><br>
       `Right click CABLE Input -> Configure Speakers -> 7.1 Surround`
 
-   3. <img src="images/windows-cable-input-default-format.png" alt="Set CABLE Input default format to 24 bit 192000 Hz" width="480"><br>
+   3. <img src="images/windows-cable-input-default-format.png" alt="Set CABLE Input default format to 24 bit 192000 Hz" width="340"><br>
       `Right click CABLE Input -> Properties -> Advanced -> Default Format -> 24 bit, 192000 Hz (Studio Quality)`
 
       `48 kHz` is also fine if you prefer that default.
 
-   4. <img src="images/windows-cable-input-spatial-off.png" alt="Turn spatial sound off for CABLE Input" width="480"><br>
+   4. <img src="images/windows-cable-input-spatial-off.png" alt="Turn spatial sound off for CABLE Input" width="340"><br>
       `Right click CABLE Input -> Properties -> Spatial sound -> Off`
 
 4. Optional: verify the same setup in `Settings -> System -> Sound`.
 
-   1. <img src="images/windows-settings-cable-input-properties.png" alt="Verify CABLE Input format and spatial sound in Windows Settings" width="760"><br>
+   1. <img src="images/windows-settings-cable-input-properties.png" alt="Verify CABLE Input format and spatial sound in Windows Settings" width="600"><br>
       `Output -> CABLE Input -> Format: 24 bit, 192000 Hz (Studio Quality) -> Spatial sound: Off`
 
-   2. <img src="images/windows-settings-output-cable-input.png" alt="Verify CABLE Input is the selected Windows output device" width="760"><br>
+   2. <img src="images/windows-settings-output-cable-input.png" alt="Verify CABLE Input is the selected Windows output device" width="600"><br>
       `Output -> Choose where to play sound -> CABLE Input`
 
 5. Open `Downmix Renderer.exe`.
@@ -46,4 +46,3 @@ This project is mainly inspired by the ideal macOS version built by peqdb: [http
 7. Inside Downmix Renderer, keep `Input Device` as `CABLE Input` and set `Sample Rate` to `Auto`, or to the same sample rate selected in step 3.
 
 8. Optionally, adjust the preamp value and advanced-menu toggles according to your needs.
-
