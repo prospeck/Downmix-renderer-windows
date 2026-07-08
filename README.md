@@ -15,52 +15,43 @@ This project is mainly inspired by the ideal macOS version built by peqdb: [http
    - Main download page: [https://vb-audio.com/Cable/](https://vb-audio.com/Cable/)
    - Direct download: [http://download.vb-audio.com/Download_CABLE/VBCABLE_Driver_Pack45.zip](http://download.vb-audio.com/Download_CABLE/VBCABLE_Driver_Pack45.zip)
 
-3. Open `Windows Control Panel -> Sound -> Playback`.
+3. Open `Windows Control Panel -> Sound -> Playback`, then follow the screenshots below.
 
-   Make sure `CABLE Input` is selected as your default playback device:
+### Set CABLE Input As Default Playback Device
 
-   - Right click `CABLE Input`.
-   - Select `Set as Default Device`.
+![Set CABLE Input as the default playback device](images/windows-playback-cable-input-default.png)
 
-   ![Set CABLE Input as the default playback device](images/windows-playback-cable-input-default.png)
+`Control Panel -> Sound -> Playback -> Right click CABLE Input -> Set as Default Device`
 
-   Configure `CABLE Input` speakers to `7.1 Surround`:
+### Configure CABLE Input To 7.1 Surround
 
-   - Right click `CABLE Input`.
-   - Select `Configure Speakers`.
-   - Select `7.1 Surround`.
+![Configure CABLE Input speaker setup to 7.1 Surround](images/windows-speaker-setup-7-1.png)
 
-   ![Configure CABLE Input speaker setup to 7.1 Surround](images/windows-speaker-setup-7-1.png)
+`Control Panel -> Sound -> Playback -> Right click CABLE Input -> Configure Speakers -> 7.1 Surround`
 
-   Set the default format:
+### Set The Default Format
 
-   - Right click `CABLE Input`.
-   - Select `Properties`.
-   - Open the `Advanced` tab.
-   - Set `Default Format` to `24 bit, 192000 Hz (Studio Quality)`.
-   - Optionally, you can use `48 kHz` as the default format instead.
+![Set CABLE Input default format to 24 bit 192000 Hz](images/windows-cable-input-default-format.png)
 
-   ![Set CABLE Input default format to 24 bit 192000 Hz](images/windows-cable-input-default-format.png)
+`Control Panel -> Sound -> Playback -> Right click CABLE Input -> Properties -> Advanced -> Default Format -> 24 bit, 192000 Hz (Studio Quality)`
 
-   Turn off spatial sound for `CABLE Input`:
+Optionally, you can use `48 kHz` as the default format instead.
 
-   - Right click `CABLE Input`.
-   - Select `Properties`.
-   - Open the `Spatial sound` tab.
-   - Set spatial sound format to `Off`.
+### Turn Off Spatial Sound
 
-   ![Turn spatial sound off for CABLE Input](images/windows-cable-input-spatial-off.png)
+![Turn spatial sound off for CABLE Input](images/windows-cable-input-spatial-off.png)
 
-   You can also verify these settings in Windows Settings:
+`Control Panel -> Sound -> Playback -> Right click CABLE Input -> Properties -> Spatial sound -> Spatial sound format -> Off`
 
-   - Open `Settings -> System -> Sound -> Output`.
-   - Select `CABLE Input`.
-   - Confirm the format is `24 bit, 192000 Hz (Studio Quality)`.
-   - Confirm spatial sound is turned off for `CABLE Input`.
+### Verify CABLE Input In Windows Settings
 
-   ![Verify CABLE Input format and spatial sound in Windows Settings](images/windows-settings-cable-input-properties.png)
+![Verify CABLE Input format and spatial sound in Windows Settings](images/windows-settings-cable-input-properties.png)
 
-   ![Verify CABLE Input is the selected Windows output device](images/windows-settings-output-cable-input.png)
+`Settings -> System -> Sound -> Output -> CABLE Input -> Format -> 24 bit, 192000 Hz (Studio Quality) -> Spatial sound -> Off`
+
+![Verify CABLE Input is the selected Windows output device](images/windows-settings-output-cable-input.png)
+
+`Settings -> System -> Sound -> Output -> Choose where to play sound -> CABLE Input`
 
 4. Open the `Downmix Renderer.exe` file.
 
