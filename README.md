@@ -46,3 +46,11 @@ This project is mainly inspired by the ideal macOS version built by peqdb: [http
 7. Inside Downmix Renderer, keep `Input Device` as `CABLE Input` and set `Sample Rate` to `Auto`, or to the same sample rate selected in step 3.
 
 8. Optionally, adjust the preamp value and advanced-menu toggles according to your needs.
+
+
+NO WASAPI INPUT ISSUE - SET BOTH VB CABLES TO 16CH
+
+1. VB CABLE INPUT
+2. VB CABLE 16CH
+
+SET BOTH THE ABOVE DRIVERS TO 16CH AND YOU CAN CHOOSE YOUR DESIRED HZ RATE. 
