@@ -1,0 +1,378 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Downmix Renderer — Every channel, folded into two</title>
+  <meta name="description" content="A native WASAPI downmix renderer for Windows. Capture 7.1 or 9.1.6 from VB-CABLE, fold it through a locked matrix, and play it on the stereo DAC you already own.">
+  <meta name="theme-color" content="#000000">
+  <meta property="og:title" content="Downmix Renderer">
+  <meta property="og:description" content="Sixteen channels in. Two out. A native WASAPI downmix renderer for Windows.">
+  <meta property="og:image" content="assets/app-view.webp">
+  <link rel="icon" type="image/png" href="assets/favicon-64.png">
+  <link rel="preload" href="fonts/Geist-Variable.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/GeistMono-Variable.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="is-loading">
+  <svg width="0" height="0" aria-hidden="true" style="position:absolute">
+    <defs>
+      <linearGradient id="logo-grad" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#43b8dc"/>
+        <stop offset=".46" stop-color="#2b3db6"/>
+        <stop offset="1" stop-color="#55c4dc"/>
+      </linearGradient>
+      <symbol id="logo" viewBox="0 0 100 100">
+        <path d="M41 6a44 44 0 0 1 0 88z" fill="url(#logo-grad)" opacity=".78"/>
+        <path d="M29 6a44 44 0 0 1 0 88z" fill="url(#logo-grad)" opacity=".88"/>
+        <path d="M16 6a44 44 0 0 1 0 88z" fill="url(#logo-grad)"/>
+        <path d="M35.5 43l7.4 7.4-7.4 7.4-7.4-7.4z" fill="#fff"/>
+      </symbol>
+    </defs>
+  </svg>
+
+  <div class="intro" aria-hidden="true">
+    <svg class="intro__logo"><use href="#logo"/></svg>
+    <div class="intro__count"><span data-intro-count>00</span><span class="intro__unit">ch</span></div>
+  </div>
+
+  <canvas class="field" data-field aria-hidden="true"></canvas>
+  <div class="grain" aria-hidden="true"></div>
+
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="nav" data-nav>
+    <a class="nav__brand" href="#top" aria-label="Downmix Renderer home">
+      <svg class="nav__logo"><use href="#logo"/></svg>
+      <span>Downmix Renderer</span>
+    </a>
+    <nav class="nav__links" aria-label="Sections">
+      <a href="#fold">Signal</a>
+      <a href="#engine">Engine</a>
+      <a href="#features">Features</a>
+      <a href="#setup">Setup</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <a class="btn btn--small" data-magnetic href="https://github.com/prospeck/Downmix-renderer-windows/releases/latest">
+      <span>Download</span>
+    </a>
+  </header>
+
+  <main id="main">
+    <!-- HERO -->
+    <section class="hero" id="top" data-field-intensity="1" data-field-tilt="0">
+      <div class="hero__inner">
+        <p class="eyebrow reveal" data-reveal>
+          <span class="pulse-dot" aria-hidden="true"></span>
+          Shared WASAPI <span class="sep">|</span> ULTRA Mode
+        </p>
+        <h1 class="hero__title" data-split>
+          <span class="line">Every channel.</span>
+          <span class="line line--dim">Folded into two.</span>
+        </h1>
+        <p class="hero__lede reveal" data-reveal>
+          A native WASAPI downmix renderer for Windows. Capture 7.1 or 9.1.6 from VB-CABLE,
+          fold it through a locked matrix, and play it on the stereo DAC you already love.
+        </p>
+        <div class="hero__cta reveal" data-reveal>
+          <a class="btn btn--primary" data-magnetic href="https://github.com/prospeck/Downmix-renderer-windows/releases/latest">
+            <svg class="btn__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5.5 10.4 4.5v7H3zM11.4 4.35 21 3v8.5h-9.6zM3 12.5h7.4v7L3 18.5zM11.4 12.5H21V21l-9.6-1.35z"/></svg>
+            <span>Download for Windows</span>
+          </a>
+          <a class="btn btn--ghost" data-magnetic href="https://github.com/prospeck/Downmix-renderer-windows">
+            <span>View on GitHub</span>
+            <svg class="btn__arrow" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 12 12 4M6 4h6v6"/></svg>
+          </a>
+        </div>
+        <p class="hero__meta reveal" data-reveal>Windows 10 &amp; 11 · x64 · No admin rights required</p>
+      </div>
+      <div class="hud reveal" data-reveal aria-hidden="true">
+        <div class="hud__head"><span>Live</span><span>9.1.6 → 2.0</span></div>
+        <div class="hud__bars" data-hud></div>
+        <div class="hud__foot"><span>48 kHz</span><span>128 fr</span><span>MMCSS</span></div>
+      </div>
+      <div class="hero__scroll" aria-hidden="true"><span>Scroll</span><i></i></div>
+    </section>
+
+    <!-- MARQUEE -->
+    <section class="marquee" aria-label="Highlights" data-field-intensity=".7" data-field-tilt=".55">
+      <div class="marquee__track">
+        <span>16 in</span><i></i><span>2 out</span><i></i><span>128-frame periods</span><i></i><span>48 · 96 · 192 kHz</span><i></i><span>MMCSS Pro Audio</span><i></i><span>Native C++ WASAPI</span><i></i>
+        <span>16 in</span><i></i><span>2 out</span><i></i><span>128-frame periods</span><i></i><span>48 · 96 · 192 kHz</span><i></i><span>MMCSS Pro Audio</span><i></i><span>Native C++ WASAPI</span><i></i>
+      </div>
+    </section>
+
+    <!-- FOLD (pinned scroll scene) -->
+    <section class="fold" id="fold" data-fold data-field-intensity=".28" data-field-tilt=".9">
+      <div class="fold__sticky">
+        <div class="fold__copy">
+          <p class="eyebrow"><span class="eyebrow__num" data-fold-num>01</span> The signal</p>
+          <div class="fold__steps">
+            <article class="fold__step is-active" data-fold-step>
+              <h2>Capture sixteen discrete channels.</h2>
+              <p>Apple Music, Dolby Access and any Windows player feed VB-CABLE as a full 9.1.6 or 7.1 bed. The renderer reads every channel, untouched.</p>
+            </article>
+            <article class="fold__step" data-fold-step>
+              <h2>Fold them through a locked matrix.</h2>
+              <p>Fronts, sides, rears and heights are summed into left and right. The centre lands at −3 dB on both sides and LFE is lifted and shared. The coefficients are pinned by tests.</p>
+            </article>
+            <article class="fold__step" data-fold-step>
+              <h2>Render two. Straight to your DAC.</h2>
+              <p>Preamp, PEQ, correction and a protective limiter run in native code, then two clean channels leave through shared WASAPI with 128-frame periods.</p>
+            </article>
+          </div>
+          <div class="fold__progress" aria-hidden="true"><i data-fold-bar></i></div>
+        </div>
+        <div class="fold__stage">
+          <canvas class="fold__canvas" data-fold-canvas aria-label="Animated diagram: sixteen speaker channels flowing into left and right outputs" role="img"></canvas>
+          <div class="matrix" aria-label="Sharur 9.1.6 to stereo matrix">
+            <div class="matrix__head"><span>ch</span><span>L</span><span>R</span></div>
+            <div class="matrix__rows" data-matrix></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FILM: scroll-driven tour of the real app -->
+    <section class="film" id="engine" data-film data-field-intensity=".2" data-field-tilt=".35" aria-label="Product tour">
+      <div class="film__sticky">
+        <div class="film__viewport">
+          <div class="film__camera" data-film-camera>
+            <div class="film__window" data-film-window>
+              <div class="film__glow" aria-hidden="true"></div>
+              <div class="window__bar">
+                <svg class="window__icon"><use href="#logo"/></svg>
+                <span>Downmix Renderer</span>
+                <span class="window__controls" aria-hidden="true"><i class="min"></i><i class="max"></i><i class="close"></i></span>
+              </div>
+              <div class="film__screen" data-film-screen>
+                <img class="film__poster" src="assets/app-view.webp" alt="" aria-hidden="true">
+                <video data-clip="press" muted playsinline preload="none" aria-hidden="true"></video>
+                <video data-clip="spatial-71" muted playsinline loop preload="none" aria-hidden="true"></video>
+                <video data-clip="spatial-916" muted playsinline loop preload="none" aria-hidden="true"></video>
+                <video data-clip="channels-916" muted playsinline loop preload="none" aria-hidden="true"></video>
+                <img data-clip="advanced" alt="" aria-hidden="true" loading="lazy">
+                <div class="film__focus" data-film-focus aria-hidden="true"></div>
+                <svg class="film__cursor" data-film-cursor viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3l14 8.2-6.1 1.3 3.6 6.6-2.6 1.4-3.6-6.6L5.6 18z"/></svg>
+                <i class="film__click" data-film-click aria-hidden="true"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="film__captions" aria-live="polite">
+          <article class="film__caption" data-film-caption>
+            <p class="eyebrow"><span class="eyebrow__num">02</span> The renderer</p>
+            <h2>Built like a <span class="dim">studio instrument.</span></h2>
+            <p>The real app, rendered frame by frame. Scroll to take the tour.</p>
+          </article>
+          <article class="film__caption" data-film-caption>
+            <p class="eyebrow">Route</p>
+            <h2>Cable in. <span class="dim">DAC out.</span></h2>
+            <p>VB-CABLE is found for you. Pick the speakers or DAC you love, at the rate it prefers.</p>
+          </article>
+          <article class="film__caption" data-film-caption>
+            <p class="eyebrow">Render</p>
+            <h2>One press. <span class="dim">ULTRA Mode.</span></h2>
+            <p>Shared WASAPI with 128-frame periods and MMCSS scheduling, live in a heartbeat.</p>
+          </article>
+          <article class="film__caption" data-film-caption>
+            <p class="eyebrow">Spatial</p>
+            <h2>Every channel, <span class="dim">alive.</span></h2>
+            <p>Each speaker glows with its own level, around you, as the music plays.</p>
+          </article>
+          <article class="film__caption" data-film-caption>
+            <p class="eyebrow">9.1.6</p>
+            <h2>Sixteen channels. <span class="dim">Heights included.</span></h2>
+            <p>Wides, rears and six height channels, each with its own place in the room.</p>
+          </article>
+          <article class="film__caption" data-film-caption>
+            <p class="eyebrow">Sum meters</p>
+            <h2>See what reaches <span class="dim">your DAC.</span></h2>
+            <p>Left and right sums, read from −160 dBFS to full scale, with a clip indicator on each side.</p>
+          </article>
+          <article class="film__caption" data-film-caption>
+            <p class="eyebrow">Channels</p>
+            <h2>Or read it <span class="dim">as a console.</span></h2>
+            <p>Switch to Channels for a capsule strip of every input, same colours, same signal.</p>
+          </article>
+          <article class="film__caption" data-film-caption>
+            <p class="eyebrow">Advanced</p>
+            <h2>Tuned once. <span class="dim">Saved forever.</span></h2>
+            <p>Preamp, upmix, PEQ, correction and trim, kept together in one profile.</p>
+          </article>
+        </div>
+
+        <div class="film__hud">
+          <button class="film__sound" type="button" data-film-sound aria-pressed="false">
+            <span class="film__eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+            <span data-film-sound-label>Sound on</span>
+          </button>
+          <ol class="film__dots" aria-hidden="true" data-film-dots><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li></ol>
+        </div>
+      </div>
+    </section>
+
+    <section class="product" data-field-intensity=".55" data-field-tilt=".35">
+      <dl class="stats">
+        <div class="stat reveal" data-reveal><dt>Period at 48 kHz</dt><dd><span data-count="2.67" data-decimals="2">0</span><small>ms</small></dd></div>
+        <div class="stat reveal" data-reveal><dt>Input channels</dt><dd><span data-count="16">0</span><small>ch</small></dd></div>
+        <div class="stat reveal" data-reveal><dt>Buffered periods</dt><dd><span data-count="3">0</span><small>× 128</small></dd></div>
+        <div class="stat reveal" data-reveal><dt>Sample rates</dt><dd><span data-count="192">0</span><small>kHz max</small></dd></div>
+      </dl>
+    </section>
+
+    <!-- FEATURES -->
+    <section class="features" id="features" data-field-intensity=".45" data-field-tilt=".2">
+      <div class="section-head">
+        <p class="eyebrow reveal" data-reveal><span class="eyebrow__num">03</span> Under the hood</p>
+        <h2 class="section-title" data-split><span class="line">Fast where it matters.</span> <span class="line line--dim">Quiet everywhere else.</span></h2>
+      </div>
+      <div class="bento">
+        <article class="card card--wide reveal" data-reveal data-spotlight>
+          <div class="card__viz viz-buffer" aria-hidden="true">
+            <div class="viz-buffer__lane"><i></i><i></i><i></i></div>
+            <div class="viz-buffer__lane"><i></i><i></i><i></i></div>
+            <div class="viz-buffer__cursor"></div>
+          </div>
+          <h3>ULTRA Mode</h3>
+          <p>Shared WASAPI with 128-frame periods, three periods of headroom and MMCSS scheduling. Buffers scale with sample rate, so the callback budget holds at 48, 96 and 192 kHz.</p>
+        </article>
+        <article class="card reveal" data-reveal data-spotlight>
+          <div class="card__viz viz-switch" aria-hidden="true">
+            <span class="viz-switch__node">CABLE Input</span>
+            <span class="viz-switch__node">Speakers</span>
+            <i class="viz-switch__dot"></i>
+          </div>
+          <h3>Smart switching</h3>
+          <p>Change the Windows default output and your saved profile follows. Music keeps playing while the bridge retargets.</p>
+        </article>
+        <article class="card reveal" data-reveal data-spotlight>
+          <div class="card__viz viz-pulse" aria-hidden="true">
+            <svg viewBox="0 0 240 64" preserveAspectRatio="none"><path class="viz-pulse__base" d="M0 32h52l8-18 10 36 10-26 6 8h50l8-20 10 40 10-28 6 8h70"/><path class="viz-pulse__run" pathLength="1" d="M0 32h52l8-18 10 36 10-26 6 8h50l8-20 10 40 10-28 6 8h70"/></svg>
+          </div>
+          <h3>Self-healing streams</h3>
+          <p>Device invalidation, interruptions and silent resumes are detected and the route is rebuilt once. No restart needed.</p>
+        </article>
+        <article class="card reveal" data-reveal data-spotlight>
+          <div class="card__viz viz-eq" aria-hidden="true">
+            <svg viewBox="0 0 240 80" preserveAspectRatio="none">
+              <path class="viz-eq__grid" d="M0 40H240M60 0V80M120 0V80M180 0V80"/>
+              <path class="viz-eq__curve" d="M0 44C30 44 40 30 60 30S90 52 120 50 150 22 180 26 220 42 240 40"/>
+            </svg>
+          </div>
+          <h3>PEQ &amp; L-R correction</h3>
+          <p>Paste Equalizer APO–style text for a global curve and a per-side stereo correction. Parsing is debounced and never touches the audio thread.</p>
+        </article>
+        <article class="card reveal" data-reveal data-spotlight>
+          <div class="card__viz viz-profiles" aria-hidden="true">
+            <span>Desk DAC</span><span>Headphones</span><span>Night</span><span>Studio</span>
+          </div>
+          <h3>Profiles</h3>
+          <p>Route, preamp, layout, PEQ, correction and trim, saved as one. Switch with a click from either page.</p>
+        </article>
+        <article class="card card--full reveal" data-reveal data-spotlight>
+          <div class="card__viz viz-native" aria-hidden="true">
+            <code>api.<span class="k">setCharacteristics</span>(<span class="s">L"Pro Audio"</span>, &amp;taskIndex);</code>
+            <code>config.playback.shareMode = <span class="k">ma_share_mode_shared</span>;</code>
+            <code>config.periodSizeInFrames = <span class="n">128</span>;</code>
+            <code>matrix · preamp · peq · swap · correction · trim · limiter</code>
+          </div>
+          <h3>Native C++ backend</h3>
+          <p>The live path runs in a native WASAPI DLL with a real-time callback. Python is the control surface, never the audio thread.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- CHAIN -->
+    <section class="chain" data-field-intensity=".5" data-field-tilt=".6">
+      <div class="section-head">
+        <p class="eyebrow reveal" data-reveal><span class="eyebrow__num">04</span> Signal chain</p>
+        <h2 class="section-title" data-split><span class="line">One path.</span> <span class="line line--dim">In a fixed order.</span></h2>
+      </div>
+      <ol class="chain__list" data-chain>
+        <li><span>Matrix</span><small>16 → 2</small></li>
+        <li><span>Preamp</span><small>−14 dB default</small></li>
+        <li><span>User PEQ</span><small>global curve</small></li>
+        <li><span>L/R swap</span><small>physical outputs</small></li>
+        <li><span>L-R correction</span><small>per side</small></li>
+        <li><span>Channel trim</span><small>0 to −24 dB</small></li>
+        <li><span>Sound Enhancer</span><small>optional</small></li>
+        <li><span>Limiter</span><small>output safety</small></li>
+      </ol>
+    </section>
+
+    <!-- SETUP -->
+    <section class="setup" id="setup" data-field-intensity=".6" data-field-tilt=".25">
+      <div class="section-head">
+        <p class="eyebrow reveal" data-reveal><span class="eyebrow__num">05</span> Setup</p>
+        <h2 class="section-title" data-split><span class="line">Three steps.</span> <span class="line line--dim">Then press Render.</span></h2>
+      </div>
+      <div class="steps">
+        <article class="step reveal" data-reveal data-spotlight>
+          <span class="step__num">01</span>
+          <h3>Install VB-CABLE</h3>
+          <p>Set Windows, or your player, to play through <kbd>CABLE Input</kbd> as a multichannel device.</p>
+        </article>
+        <article class="step reveal" data-reveal data-spotlight>
+          <span class="step__num">02</span>
+          <h3>Pick your DAC</h3>
+          <p>The renderer captures the cable for you. Choose your speakers or DAC as the output.</p>
+        </article>
+        <article class="step reveal" data-reveal data-spotlight>
+          <span class="step__num">03</span>
+          <h3>Render</h3>
+          <p>Start rendering, save a profile, and turn on Smart Switching so it follows Windows.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq" id="faq" data-field-intensity=".4" data-field-tilt=".1">
+      <div class="section-head">
+        <p class="eyebrow reveal" data-reveal><span class="eyebrow__num">06</span> Questions</p>
+        <h2 class="section-title" data-split><span class="line">Good to know.</span></h2>
+      </div>
+      <div class="faq__list">
+        <details class="reveal" data-reveal>
+          <summary>Does it need exclusive mode?<i aria-hidden="true"></i></summary>
+          <div class="faq__body"><p>No. The production path is shared WASAPI, so Apple Music, VLC, browsers, Bluetooth endpoints and other Windows audio keep working alongside it.</p></div>
+        </details>
+        <details class="reveal" data-reveal>
+          <summary>Will it colour my sound?<i aria-hidden="true"></i></summary>
+          <div class="faq__body"><p>Not unless you ask it to. The downmix matrix is fixed and pinned by tests. PEQ, correction and Sound Enhancer are off until you enable them.</p></div>
+        </details>
+        <details class="reveal" data-reveal>
+          <summary>What if my device disconnects?<i aria-hidden="true"></i></summary>
+          <div class="faq__body"><p>The native backend reports stream stops, reroutes and interruptions. The renderer checks that audio is flowing after every change and rebuilds the route once if it isn’t.</p></div>
+        </details>
+        <details class="reveal" data-reveal>
+          <summary>Can it start with Windows?<i aria-hidden="true"></i></summary>
+          <div class="faq__body"><p>Yes. Auto-start on Boot adds a Startup-folder shortcut. No admin rights are needed, and old Downmix launchers are cleaned up.</p></div>
+        </details>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta" data-field-intensity="1" data-field-tilt="0">
+      <svg class="cta__logo reveal" data-reveal aria-hidden="true"><use href="#logo"/></svg>
+      <h2 class="cta__title" data-split><span class="line">Press Render.</span></h2>
+      <p class="section-lede reveal" data-reveal>Free and open source. Download it and keep the music playing.</p>
+      <div class="hero__cta reveal" data-reveal>
+        <a class="btn btn--primary" data-magnetic href="https://github.com/prospeck/Downmix-renderer-windows/releases/latest">
+          <svg class="btn__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5.5 10.4 4.5v7H3zM11.4 4.35 21 3v8.5h-9.6zM3 12.5h7.4v7L3 18.5zM11.4 12.5H21V21l-9.6-1.35z"/></svg>
+          <span>Download for Windows</span>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <span>© <span data-year>2026</span> Downmix Renderer</span>
+    <span class="footer__mid">Licensed GPL-3.0</span>
+    <a href="https://github.com/prospeck/Downmix-renderer-windows">GitHub</a>
+  </footer>
+
+  <script src="main.js" defer></script>
+</body>
+</html>
