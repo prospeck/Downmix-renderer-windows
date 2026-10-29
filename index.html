@@ -6,9 +6,21 @@
   <title>Downmix Renderer — Every channel, folded into two</title>
   <meta name="description" content="A native WASAPI downmix renderer for Windows. Capture 7.1 or 9.1.6 from VB-CABLE, fold it through a locked matrix, and play it on the stereo DAC you already own.">
   <meta name="theme-color" content="#000000">
-  <meta property="og:title" content="Downmix Renderer">
+  <link rel="canonical" href="https://prospeck.github.io/Downmix-renderer-windows/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Downmix Renderer">
+  <meta property="og:url" content="https://prospeck.github.io/Downmix-renderer-windows/">
+  <meta property="og:title" content="Downmix Renderer — Every channel, folded into two">
   <meta property="og:description" content="Sixteen channels in. Two out. A native WASAPI downmix renderer for Windows.">
-  <meta property="og:image" content="assets/app-view.webp">
+  <meta property="og:image" content="https://prospeck.github.io/Downmix-renderer-windows/assets/og-card.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Downmix Renderer: Every channel. Folded into two.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Downmix Renderer — Every channel, folded into two">
+  <meta name="twitter:description" content="Sixteen channels in. Two out. A native WASAPI downmix renderer for Windows.">
+  <meta name="twitter:image" content="https://prospeck.github.io/Downmix-renderer-windows/assets/og-card.jpg">
+  <link rel="apple-touch-icon" href="assets/logo-256.png">
   <link rel="icon" type="image/png" href="assets/favicon-64.png">
   <link rel="preload" href="fonts/Geist-Variable.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fonts/GeistMono-Variable.woff2" as="font" type="font/woff2" crossorigin>
@@ -75,7 +87,7 @@
           fold it through a locked matrix, and play it on the stereo DAC you already love.
         </p>
         <div class="hero__cta reveal" data-reveal>
-          <a class="btn btn--primary" data-magnetic href="https://github.com/prospeck/Downmix-renderer-windows/releases/latest">
+          <a class="btn btn--primary" data-magnetic href="https://github.com/prospeck/Downmix-renderer-windows/releases/latest/download/Downmix-Renderer-Setup-x64.exe">
             <svg class="btn__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5.5 10.4 4.5v7H3zM11.4 4.35 21 3v8.5h-9.6zM3 12.5h7.4v7L3 18.5zM11.4 12.5H21V21l-9.6-1.35z"/></svg>
             <span>Download for Windows</span>
           </a>
@@ -84,7 +96,7 @@
             <svg class="btn__arrow" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 12 12 4M6 4h6v6"/></svg>
           </a>
         </div>
-        <p class="hero__meta reveal" data-reveal>Windows 10 &amp; 11 · x64 · No admin rights required</p>
+        <p class="hero__meta reveal" data-reveal>Windows 10 &amp; 11 · x64 · No admin rights required · <a href="https://github.com/prospeck/Downmix-renderer-windows/releases/latest">Portable ZIP &amp; checksums</a></p>
       </div>
       <div class="hud reveal" data-reveal aria-hidden="true">
         <div class="hud__head"><span>Live</span><span>9.1.6 → 2.0</span></div>
@@ -335,6 +347,14 @@
       </div>
       <div class="faq__list">
         <details class="reveal" data-reveal>
+          <summary>Do I need VB-CABLE?<i aria-hidden="true"></i></summary>
+          <div class="faq__body"><p>Yes. VB-CABLE is a free virtual audio device from VB-Audio. Windows and your players send multichannel audio into <kbd>CABLE Input</kbd>, and the renderer picks it up from the other end. Set the cable to 7.1 in Windows Sound settings so every channel survives.</p></div>
+        </details>
+        <details class="reveal" data-reveal>
+          <summary>Why does Windows warn me when I open it?<i aria-hidden="true"></i></summary>
+          <div class="faq__body"><p>The download isn’t code-signed yet, so Microsoft Defender SmartScreen may say “Windows protected your PC”. Choose <kbd>More info</kbd>, then <kbd>Run anyway</kbd>. Each release lists a SHA-256 checksum if you want to verify the file first.</p></div>
+        </details>
+        <details class="reveal" data-reveal>
           <summary>Does it need exclusive mode?<i aria-hidden="true"></i></summary>
           <div class="faq__body"><p>No. The production path is shared WASAPI, so Apple Music, VLC, browsers, Bluetooth endpoints and other Windows audio keep working alongside it.</p></div>
         </details>
@@ -350,6 +370,10 @@
           <summary>Can it start with Windows?<i aria-hidden="true"></i></summary>
           <div class="faq__body"><p>Yes. Auto-start on Boot adds a Startup-folder shortcut. No admin rights are needed, and old Downmix launchers are cleaned up.</p></div>
         </details>
+        <details class="reveal" data-reveal>
+          <summary>Is it free?<i aria-hidden="true"></i></summary>
+          <div class="faq__body"><p>Yes. Downmix Renderer is free, with no account, ads or telemetry. It only goes online to check GitHub for a newer version, and you can turn that off.</p></div>
+        </details>
       </div>
     </section>
 
@@ -357,9 +381,9 @@
     <section class="cta" data-field-intensity="1" data-field-tilt="0">
       <svg class="cta__logo reveal" data-reveal aria-hidden="true"><use href="#logo"/></svg>
       <h2 class="cta__title" data-split><span class="line">Press Render.</span></h2>
-      <p class="section-lede reveal" data-reveal>Free and open source. Download it and keep the music playing.</p>
+      <p class="section-lede reveal" data-reveal>Free, with no account and no ads. Download it and keep the music playing.</p>
       <div class="hero__cta reveal" data-reveal>
-        <a class="btn btn--primary" data-magnetic href="https://github.com/prospeck/Downmix-renderer-windows/releases/latest">
+        <a class="btn btn--primary" data-magnetic href="https://github.com/prospeck/Downmix-renderer-windows/releases/latest/download/Downmix-Renderer-Setup-x64.exe">
           <svg class="btn__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5.5 10.4 4.5v7H3zM11.4 4.35 21 3v8.5h-9.6zM3 12.5h7.4v7L3 18.5zM11.4 12.5H21V21l-9.6-1.35z"/></svg>
           <span>Download for Windows</span>
         </a>

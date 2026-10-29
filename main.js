@@ -6,6 +6,8 @@
   const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
   const lerp = (a, b, t) => a + (b - a) * t;
   const smooth = (a, b, v) => { const t = clamp((v - a) / (b - a)); return t * t * (3 - 2 * t); };
+  // Touch devices are usually phones: cap canvas resolution to keep the GPU and battery cool.
+  const MAX_DPR = finePointer ? 2 : 1.5;
   const easeInOut = (t) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
 
   const state = {
@@ -412,7 +414,7 @@
     const target = { intensity: 1, tilt: 0 };
 
     const build = () => {
-      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      dpr = Math.min(window.devicePixelRatio || 1, MAX_DPR);
       const w = window.innerWidth;
       const h = Math.max(window.innerHeight, document.documentElement.clientHeight);
       canvas.width = Math.round(w * dpr);
@@ -655,7 +657,7 @@
     let w = 0, h = 0, dpr = 1;
     const resize = () => {
       const r = canvas.getBoundingClientRect();
-      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      dpr = Math.min(window.devicePixelRatio || 1, MAX_DPR);
       w = r.width;
       h = r.height;
       canvas.width = Math.round(w * dpr);

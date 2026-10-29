@@ -2,6 +2,8 @@
 
 A static, dependency-free landing page. No build step.
 
+Live at https://prospeck.github.io/Downmix-renderer-windows/ (GitHub Pages, served from the `gh-pages` branch of the public `prospeck/Downmix-renderer-windows` repo). After committing site changes, publish them with `scripts/publish_website.sh` while signed in to gh as `prospeck`.
+
 ```sh
 python3 -m http.server 8765 --directory website
 # open http://127.0.0.1:8765/
