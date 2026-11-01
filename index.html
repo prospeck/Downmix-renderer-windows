@@ -274,14 +274,36 @@
             </svg>
           </div>
           <h3>PEQ &amp; L-R correction</h3>
-          <p>Paste Equalizer APO–style text for a global curve and a per-side stereo correction. Parsing is debounced and never touches the audio thread.</p>
+          <p>Paste Equalizer APO–style text for a global curve and a per-side stereo correction, and see the real frequency response as you type. Parsing never touches the audio thread.</p>
         </article>
         <article class="card reveal" data-reveal data-spotlight>
           <div class="card__viz viz-profiles" aria-hidden="true">
             <span>Desk DAC</span><span>Headphones</span><span>Night</span><span>Studio</span>
           </div>
           <h3>Profiles</h3>
-          <p>Route, preamp, layout, PEQ, correction and trim, saved as one. Switch with a click from either page.</p>
+          <p>Route, preamp, layout, PEQ, correction and trim, saved as one. Switch with a click, or export one to a file and share it.</p>
+        </article>
+        <article class="card reveal" data-reveal data-spotlight>
+          <div class="card__viz viz-compare" aria-hidden="true">
+            <span class="viz-compare__key">Space</span>
+            <span class="viz-compare__state"><b>Downmix</b><b>Plain stereo</b></span>
+          </div>
+          <h3>Hold Space to compare</h3>
+          <p>While rendering, hold Space to hear only the front pair, the way plain stereo plays it. Let go and the full downmix comes back.</p>
+        </article>
+        <article class="card reveal" data-reveal data-spotlight>
+          <div class="card__viz viz-check" aria-hidden="true">
+            <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+          </div>
+          <h3>Speaker check</h3>
+          <p>Pink noise walks every channel in turn and its speaker lights up, so you can hear exactly where each one lands.</p>
+        </article>
+        <article class="card reveal" data-reveal data-spotlight>
+          <div class="card__viz viz-tray" aria-hidden="true">
+            <span class="viz-tray__panel"><b>Downmix Renderer</b><i>Rendering</i><u></u><u></u></span>
+          </div>
+          <h3>Lives in the tray</h3>
+          <p>Close the window and the sound keeps going. Start, stop and switch outputs from the tray, and update in one click.</p>
         </article>
         <article class="card card--full reveal" data-reveal data-spotlight>
           <div class="card__viz viz-native" aria-hidden="true">
@@ -368,7 +390,11 @@
         </details>
         <details class="reveal" data-reveal>
           <summary>Can it start with Windows?<i aria-hidden="true"></i></summary>
-          <div class="faq__body"><p>Yes. Auto-start on Boot adds a Startup-folder shortcut. No admin rights are needed, and old Downmix launchers are cleaned up.</p></div>
+          <div class="faq__body"><p>Yes. Start with Windows adds a Startup-folder shortcut, and at sign-in the renderer starts quietly in the tray and resumes your sound. No admin rights are needed, and old Downmix launchers are cleaned up.</p></div>
+        </details>
+        <details class="reveal" data-reveal>
+          <summary>How do updates work?<i aria-hidden="true"></i></summary>
+          <div class="faq__body"><p>When a new version is out, the app offers it. Press <kbd>Update</kbd>, and it downloads the installer from this project’s GitHub release, checks its SHA-256 checksum, then restarts into the new version and picks up where you left off.</p></div>
         </details>
         <details class="reveal" data-reveal>
           <summary>Is it free?<i aria-hidden="true"></i></summary>
