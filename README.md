@@ -88,4 +88,4 @@ There is no account, no ads and no telemetry. The only thing the app does online
 
 ## License
 
-[GPL-3.0](LICENSE)
+Downmix Renderer is free to use and closed source: see [LICENSE](LICENSE). It is built on open-source components (Qt 6 through PySide6 under the LGPL, NumPy, PortAudio, miniaudio and others). Their notices are in [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md), and the licence texts ship inside every download.
